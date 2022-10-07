@@ -3,6 +3,7 @@ package com.my.blogApp.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,29 +21,22 @@ import com.my.blogApp.service.PostService;
 public class PostServiceImpl implements PostService{
 
 	private PostRepository postRepository;
+	private ModelMapper modelMapper;
 	
-	
-	public PostServiceImpl(PostRepository postRepository) {
+	public PostServiceImpl(PostRepository postRepository,ModelMapper modelMapper) {
 		super();
 		this.postRepository = postRepository;
+		this.modelMapper =modelMapper;
 	}
 
 
 	private Post mapToEntity(PostDto postDto) {
-		Post post = new Post();
-		post.setId(postDto.getId());
-		post.setTitle(postDto.getTitle());
-		post.setDescription(postDto.getDescription());
-		post.setContent(postDto.getContent());
+		Post post = modelMapper.map(postDto, Post.class);
 		return post;
 	}
 	
 	private PostDto mapToDto(Post post) {
-		PostDto postDto = new PostDto();
-		postDto.setContent(post.getContent());
-		postDto.setDescription(post.getDescription());
-		postDto.setId(post.getId());
-		postDto.setTitle(post.getTitle());
+		PostDto postDto = modelMapper.map(post, PostDto.class);
 		return postDto;
 	}
 	@Override

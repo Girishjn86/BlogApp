@@ -2,7 +2,7 @@ package com.my.blogApp.exception;
 
 import org.springframework.http.HttpStatus;
 
-public class BlogApiException extends Exception{
+public class BlogApiException extends RuntimeException{
 
 	private static final long serialVersionUID = 1L;
 	private HttpStatus status;

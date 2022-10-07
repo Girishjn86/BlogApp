@@ -33,12 +33,13 @@ public class Post {
 	}
 	
 	
-	public Post(Long id, String title, String description, String content) {
+	public Post(Long id, String title, String description, String content, Set<Comment> comments) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.content = content;
+		this.comments = comments;
 	}
 
 
@@ -66,6 +67,11 @@ public class Post {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
+	public Set<Comment> getComments(){
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
 	
 }
